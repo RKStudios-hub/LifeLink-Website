@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LifeLink – Download the Community Emergency Service app</title>
+<meta name="description" content="LifeLink helps you find the right hospital, check key details, and get a route fast. Download the app.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3faf7;--paper:#fff;--ink:#14231e;--mute:#5d716a;--teal:#1b8a6b;--teal-d:#126b52;--mint:#dff3ea;--red:#d63a3f;--rose:#fdeceb;--line:#dbe9e3;
+--display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'Figtree','Segoe UI',system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-force]){}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4.4vw,44px);margin-bottom:14px}
+section{padding:84px 0}
+.lead{color:var(--mute);max-width:56ch;font-size:18px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(243,250,247,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:21px}
+.logo svg{width:34px;height:34px}
+nav ul{display:flex;gap:26px;list-style:none;padding:0;font-weight:500;font-size:15px;color:var(--mute)}
+nav ul a:hover{color:var(--teal)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#fff;font-weight:600;padding:14px 24px;border-radius:999px;border:0;cursor:pointer;font:600 16px var(--body);transition:transform .2s,background .2s,box-shadow .2s;box-shadow:0 8px 22px -8px rgba(27,138,107,.7)}
+.btn:hover{background:var(--teal-d);transform:translateY(-2px)}
+.btn.ghost{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.sm{padding:9px 18px;font-size:14px}
+@media(max-width:760px){nav ul{display:none}}
+
+/* hero */
+.hero{padding:56px 0 40px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(40px,7vw,76px);font-weight:800}
+.hero h1 span{display:inline-block;animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 span:nth-child(2){animation-delay:.12s}.hero h1 span:nth-child(3){animation-delay:.24s}
+.hero h1 .red{color:var(--red)}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.hero p.lead{margin:22px 0 30px;animation:rise .8s .4s both}
+.cta{display:flex;flex-wrap:wrap;gap:12px;animation:rise .8s .55s both}
+.note{margin-top:16px;font-size:14px;color:var(--mute);animation:rise .8s .7s both}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);z-index:-1;opacity:.55}
+.b1{width:380px;height:380px;background:#bfe9d8;top:-60px;right:-80px;animation:drift 12s ease-in-out infinite alternate}
+.b2{width:280px;height:280px;background:#ffd9d6;bottom:-40px;left:-60px;animation:drift 15s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(40px,30px) scale(1.12)}}
+
+/* phone */
+.stage{display:flex;justify-content:center;position:relative}
+.phone{width:290px;background:var(--paper);border-radius:40px;padding:12px;box-shadow:0 40px 80px -30px rgba(18,107,82,.45),0 0 0 1.5px var(--line);animation:float 6s ease-in-out infinite;position:relative}
+@keyframes float{50%{transform:translateY(-14px) rotate(.6deg)}}
+.screen{border-radius:30px;background:linear-gradient(#f6fcf9,#fff);padding:16px 14px 14px;min-height:540px;overflow:hidden}
+.sbar{display:flex;align-items:center;gap:8px;font:800 15px var(--display)}
+.sbar svg{width:24px}
+.s-eyebrow{font-size:9px;font-weight:700;color:var(--teal);letter-spacing:.08em;margin-top:16px}
+.s-h{font:800 21px/1.1 var(--display);margin:4px 0 12px}
+.pill{background:#fff;border-radius:14px;box-shadow:0 4px 14px rgba(20,35,30,.07);padding:9px 12px;font-size:11px;color:var(--mute);display:flex;gap:8px;align-items:center;margin-bottom:9px}
+.ico{width:26px;height:26px;border-radius:8px;background:var(--mint);display:grid;place-items:center;flex:none}
+.ico.r{background:var(--rose)}
+.ico svg{width:14px}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:12px 0}
+.mini div{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(20,35,30,.06);padding:8px 6px;font-size:9px;font-weight:600;text-align:center}
+.mini .ico{margin:0 auto 4px}
+.map{height:130px;border-radius:16px;background:#e9f6f0;position:relative;overflow:hidden;background-image:linear-gradient(#d3ebe0 1px,transparent 1px),linear-gradient(90deg,#d3ebe0 1px,transparent 1px);background-size:22px 22px}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.route{stroke:var(--teal);stroke-width:3.5;fill:none;stroke-linecap:round;stroke-dasharray:260;stroke-dashoffset:260;animation:draw 3.6s ease-in-out infinite}
+@keyframes draw{0%{stroke-dashoffset:260}60%,100%{stroke-dashoffset:0}}
+.ping{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--red);right:22px;top:20px}
+.ping::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--red);animation:ping 1.8s infinite}
+@keyframes ping{from{transform:scale(.4);opacity:1}to{transform:scale(1.8);opacity:0}}
+.me{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--teal);border:3px solid #fff;left:20px;bottom:22px;box-shadow:0 0 0 1px var(--teal)}
+.urgent{margin-top:11px;background:var(--rose);border-radius:14px;padding:10px 12px;display:flex;justify-content:space-between;font-size:11px;font-weight:600;align-items:center}
+.urgent b{color:var(--red);font-size:15px;animation:beat 1.2s infinite}
+@keyframes beat{50%{transform:scale(1.18)}}
+.chip{position:absolute;background:#fff;border-radius:14px;padding:10px 14px;font-size:13px;font-weight:600;box-shadow:0 14px 30px -10px rgba(20,35,30,.28);display:flex;gap:8px;align-items:center}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--teal)}
+.c1{left:-8px;top:90px;animation:float 5s ease-in-out infinite}
+.c2{right:-8px;bottom:110px;animation:float 7s ease-in-out infinite reverse}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.c1{left:0}.c2{right:0}}
+
+/* marquee */
+.marq{border-block:1px solid var(--line);background:var(--paper);overflow:hidden;padding:16px 0}
+.track{display:flex;gap:48px;width:max-content;animation:scroll 28s linear infinite;font:700 22px var(--display);color:var(--teal)}
+.track span:nth-child(even){color:var(--red)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px;counter-reset:s}
+.step{background:var(--paper);border-radius:22px;padding:24px 20px;border:1.5px solid var(--line);position:relative;transition:.5s}
+.step.on{border-color:var(--teal);background:var(--mint);transform:translateY(-8px)}
+.step b{font:800 26px var(--display);display:block;margin-bottom:6px}
+.step p{color:var(--mute);font-size:15px}
+.step.on b{color:var(--teal-d)}
+@media(max-width:860px){.flow{grid-template-columns:1fr 1fr}}
+
+/* features */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.feat{background:var(--paper);border-radius:24px;padding:26px;border:1.5px solid var(--line)}
+.feat:nth-child(1),.feat:nth-child(5){grid-column:span 2;background:linear-gradient(135deg,#fff,var(--mint))}
+.feat .ico{width:44px;height:44px;border-radius:14px;margin-bottom:16px}
+.feat .ico svg{width:22px}
+.feat h3{font-size:21px;margin-bottom:6px}
+.feat p{color:var(--mute);font-size:15px}
+.feat:hover .ico{animation:wob .6s}
+@keyframes wob{30%{transform:rotate(-12deg) scale(1.1)}60%{transform:rotate(8deg)}}
+@media(max-width:860px){.grid{grid-template-columns:1fr}.feat:nth-child(n){grid-column:auto}}
+
+/* pillars */
+.pillars{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.pillars div{background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:12px 22px;font-weight:600}
+.pillars strong{font-family:var(--display);color:var(--teal);margin-right:6px}
+
+/* download */
+.dl{background:var(--teal);color:#fff;border-radius:36px;padding:64px 30px;text-align:center;position:relative;overflow:hidden}
+.dl::before,.dl::after{content:"";position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.25);width:300px;height:300px;left:50%;top:50%;margin:-150px;animation:pulse 4s infinite}
+.dl::after{animation-delay:2s}
+@keyframes pulse{from{transform:scale(.6);opacity:1}to{transform:scale(3);opacity:0}}
+.dl>*{position:relative;z-index:1}
+.dl p{opacity:.9;max-width:50ch;margin:0 auto 28px}
+.dl .row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.dl .btn{background:#fff;color:var(--ink);box-shadow:0 12px 30px -10px rgba(0,0,0,.35)}
+.dl .btn:hover{background:var(--rose)}
+.dl small{display:block;margin-top:22px;opacity:.85}
+
+/* faq */
+.faq{max-width:760px;margin:36px auto 0}
+details{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;margin-bottom:10px;transition:border-color .2s}
+details[open]{border-color:var(--teal)}
+summary{list-style:none;cursor:pointer;padding:18px 22px;font:700 18px var(--display);display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:26px;color:var(--teal);transition:transform .3s;flex:none}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 22px 20px;color:var(--mute)}
+.center{text-align:center}.center .lead{margin:0 auto}
+
+footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mute);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px}
+footer .warn{max-width:520px}
+
+/* scroll reveal: single, light */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+/* ---- mobile-first refinements ---- */
+html{-webkit-text-size-adjust:100%}
+body{padding-bottom:env(safe-area-inset-bottom,0)}
+.btn,summary{min-height:48px;-webkit-tap-highlight-color:transparent}
+img,svg{max-width:100%}
+@media(max-width:860px){
+  section{padding:60px 0}
+  .hero{padding:32px 0 24px}
+  .hero .wrap{gap:48px;text-align:center}
+  .hero .lead,.lead{margin-inline:auto}
+  .cta{justify-content:center}
+  .blob{opacity:.4}.b1{width:260px;height:260px;right:-120px}.b2{width:200px;height:200px;left:-100px}
+  .chip{font-size:12px;padding:8px 12px}
+  .c1{left:4%;top:60px}.c2{right:4%;bottom:90px}
+  .dl{border-radius:28px;padding:48px 20px}
+  .dl::before,.dl::after{width:200px;height:200px;margin:-100px}
+  footer .wrap{flex-direction:column;text-align:center;align-items:center}
+}
+@media(max-width:560px){
+  .wrap{padding:0 16px}
+  nav .wrap{height:58px}
+  .logo{font-size:19px}.logo svg{width:30px;height:30px}
+  h2{font-size:28px}
+  .lead{font-size:16px}
+  .hero h1{font-size:clamp(38px,12vw,52px)}
+  .cta{flex-direction:column;align-items:stretch}
+  .cta .btn,.dl .row .btn{width:100%;justify-content:center}
+  .dl .row{flex-direction:column}
+  .phone{width:min(270px,78vw);border-radius:36px}
+  .screen{min-height:500px;border-radius:26px}
+  .c1{left:0}.c2{right:0}
+  .flow{grid-template-columns:1fr;gap:10px;margin-top:28px}
+  .step{padding:18px}
+  .step.on{transform:none}
+  .feat{padding:20px;border-radius:20px}
+  .pillars div{padding:10px 16px;font-size:14px}
+  summary{font-size:16px;padding:14px 16px}
+  details p{padding:0 16px 16px;font-size:15px}
+  .track{font-size:18px;gap:32px}
+  .grid{margin-top:28px;gap:12px}
+}
+@media(max-width:360px){.chip{display:none}.phone{width:86vw}}
+@media(hover:none){.btn:hover{transform:none}.feat:hover .ico{animation:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="heart" viewBox="0 0 48 48"><path d="M24 42S5 30 5 16.5C5 10.7 9.4 6.5 14.8 6.5c3.6 0 7 2 9.2 5.2 2.2-3.200 5.600-5.200 9.200-5.200C38.600 6.500 43 10.700 43 16.500 43 30 24 42 24 42z" fill="none" stroke="#d63a3f" stroke-width="4" stroke-linejoin="round"/><path d="M14 24h6l3-6 4 11 3-5h6" fill="none" stroke="#d63a3f" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo"><svg><use href="#heart"/></svg>LifeLink</a>
+    <ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#why">Why LifeLink</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#download" class="btn sm">Download</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div>
+      <h1><span>Find the</span> <span>right care,</span> <span class="red">fast.</span></h1>
+      <p class="lead">LifeLink brings hospitals, contact details and routes into one simple app, so you search less and reach help sooner.</p>
+      <div class="cta">
+        <a href="#download" class="btn">Download LifeLink</a>
+        <a href="#how" class="btn ghost">See how it works</a>
+      </div>
+      <p class="note">Free · Works offline · Location asked only when needed</p>
+    </div>
+    <div class="stage">
+      <div class="chip c1"><i></i>Hospital found</div>
+      <div class="phone">
+        <div class="screen">
+          <div class="sbar"><svg viewBox="0 0 48 48"><use href="#heart"/></svg>LifeLink</div>
+          <div class="s-eyebrow">LIFELINK CARE</div>
+          <div class="s-h">Find care near you</div>
+          <div class="pill"><span class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><circle cx="12" cy="9" r="5"/></svg></span>Location selected</div>
+          <div class="map">
+            <svg viewBox="0 0 230 130"><path class="route" d="M26 104 C70 100 70 60 110 66 S170 40 205 27"/></svg>
+            <span class="me"></span><span class="ping"></span>
+          </div>
+          <div class="mini">
+            <div><span class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><rect x="4" y="4" width="16" height="16" rx="3"/></svg></span>Hospitals</div>
+            <div><span class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M3 11l18-8-8 18-2-8z"/></svg></span>Nearby map</div>
+            <div><span class="ico r"><svg viewBox="0 0 24 24" fill="#d63a3f"><rect x="3" y="8" width="18" height="9" rx="2"/></svg></span>Emergency</div>
+          </div>
+          <div class="urgent">Need urgent help?<b>108</b></div>
+        </div>
+      </div>
+      <div class="chip c2"><i style="background:var(--red)"></i>Route ready</div>
+    </div>
+  </div>
+</header>
+
+<div class="marq" aria-hidden="true">
+  <div class="track">
+    <span>Connect</span><span>Locate</span><span>Respond</span><span>Connect</span><span>Locate</span><span>Respond</span>
+    <span>Connect</span><span>Locate</span><span>Respond</span><span>Connect</span><span>Locate</span><span>Respond</span>
+  </div>
+</div>
+
+<section id="how">
+  <div class="wrap">
+    <div class="rv"><h2>Four steps from worry to route</h2>
+    <p class="lead">When every second counts, LifeLink keeps the path short: open the app, search, check the details, and navigate.</p></div>
+    <div class="flow" id="flow">
+      <div class="step rv"><b>Find</b><p>Search for a nearby hospital or emergency resource.</p></div>
+      <div class="step rv"><b>Check</b><p>See name, contact, facilities and distance in one place.</p></div>
+      <div class="step rv"><b>Route</b><p>Pick a hospital on the map and see the way there.</p></div>
+      <div class="step rv"><b>Respond</b><p>Call ahead or head out knowing where you're going.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features" style="padding-top:20px">
+  <div class="wrap">
+    <div class="rv"><h2>Everything you need in an emergency</h2>
+    <p class="lead">Built around the questions people actually ask: where, how far, who to call, and can they help.</p></div>
+    <div class="grid">
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M12 2l8 3v6c0 5-3.500 9-8 11-4.500-2-8-6-8-11V5z"/></svg></div><h3>Smart Hospital Finder</h3><p>Match nearby hospitals to what the patient needs, not just whatever is closest.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><rect x="4" y="3" width="16" height="18" rx="3"/></svg></div><h3>Hospital details</h3><p>Name, location, contact and available facilities.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M3 11l18-8-8 18-2-8z"/></svg></div><h3>Interactive map</h3><p>Tap a hospital to see distance and route.</p></div>
+      <div class="feat rv"><div class="ico r"><svg viewBox="0 0 24 24" fill="#d63a3f"><path d="M12 2s6 7 6 12a6 6 0 01-12 0c0-5 6-12 6-12z"/></svg></div><h3>Blood information</h3><p>Know when blood is needed and what to ask for.</p></div>
+      <div class="feat rv"><div class="ico r"><svg viewBox="0 0 24 24" fill="#d63a3f"><path d="M6 2h9l5 5v15H6z"/></svg></div><h3>Emergency 108, one tap</h3><p>Call the emergency helpline instantly from the home screen, and keep key documents handy.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M2 14h5l3-8 4 14 3-6h5v2h-3.700l-4.300 8-4-13-1.500 5H2z"/></svg></div><h3>Works offline</h3><p>Stored hospital information stays useful with no internet.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="why" style="padding-top:20px">
+  <div class="wrap">
+    <div class="rv"><h2>Fast. Local. Offline. Private.</h2>
+    <p class="lead">Less searching, fewer steps, clearer decisions. Your location is requested only when you need it.</p></div>
+    <div class="pillars rv">
+      <div><strong>Fast</strong>fewer steps</div>
+      <div><strong>Local</strong>location-aware</div>
+      <div><strong>Offline</strong>stored info, no signal needed</div>
+      <div><strong>Private</strong>location only on request</div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="wrap">
+    <div class="dl rv">
+      <h2>Get LifeLink before you need it</h2>
+      <p>Install it now so the right information is already on your phone when it matters most.</p>
+      <div class="row">
+        <a class="btn" href="base.apk" download="LifeLink.apk">Download for Android (APK)</a>
+        <a class="btn" href="https://rkstudios-hub.github.io/LifeLink/" target="_blank" rel="noopener">Open web app</a>
+      </div>
+      <small>Add to home screen from your browser to install it like an app (PWA).</small>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap center">
+    <div class="rv"><h2>Questions, answered</h2><p class="lead">Short answers about how LifeLink works.</p></div>
+    <div class="faq" style="text-align:left">
+      <details><summary>What is LifeLink?</summary><p>LifeLink is a Community Emergency Service System. It helps you find nearby hospitals, check important details, see a route, and take the next step, all in one mobile-friendly app.</p></details>
+      <details><summary>Does LifeLink work without internet?</summary><p>The current prototype works offline so its main features can be used without a connection. The full version will go online for real-time updates, live maps, location tracking and road routing.</p></details>
+      <details><summary>Is it free to download?</summary><p>Yes. LifeLink is free to download and use.</p></details>
+      <details><summary>How do I install it?</summary><p>Tap Download above. On Android, install the APK. On any phone, you can also open the web app and choose "Add to Home Screen" to install it as a PWA.</p></details>
+      <details><summary>Does it track my location?</summary><p>No constant tracking. LifeLink asks for your location only when you need it, for example to find nearby hospitals and show a route.</p></details>
+      <details><summary>Can I rely on it for medical decisions?</summary><p>No. LifeLink does not replace doctors, hospitals, ambulances or professional medical judgement. The prototype may use sample or available data, so always confirm details with the hospital. In a life-threatening emergency, call 108.</p></details>
+      <details><summary>What technology does it use?</summary><p>HTML, CSS and JavaScript, with Leaflet and OpenStreetMap for maps, OSRM for routes and distance, and PWA with a Service Worker for offline use.</p></details>
+      <details><summary>What's coming next?</summary><p>Real-time ambulance availability, verified blood donors by group and area, hospital ICU updates, verified volunteers, local emergency alerts, voice search, and Hindi and other regional languages.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><a href="#top" class="logo"><svg><use href="#heart"/></svg>LifeLink</a><p style="margin-top:8px">Connect. Locate. Respond.</p></div>
+    <p class="warn">LifeLink is a prototype and not a substitute for professional medical care. Verify information with the concerned hospital. For emergencies, call 108.</p>
+    <p>Built by Aditya &amp; Anand</p>
+  </div>
+</footer>
+
+<script>
+// scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// cycle the four steps
+const steps=[...document.querySelectorAll('.step')];let i=0;
+setInterval(()=>{steps.forEach((s,k)=>s.classList.toggle('on',k===i));i=(i+1)%steps.length},1800);
+</script>
+</body>
+</html>
