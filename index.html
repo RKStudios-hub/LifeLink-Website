@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LifeLink – Download the Community Emergency Service app</title>
-<meta name="description" content="LifeLink helps you find the right hospital, check key details, and get a route fast. Download the app.">
+<title>LifeLink | Find nearby hospitals</title>
+<meta name="description" content="LifeLink helps you look up nearby hospitals, check useful details and find them on a map.">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -28,6 +30,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(243,250,247,.82);backdrop-f
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:21px}
 .logo svg{width:34px;height:34px}
+.logo img{width:34px;height:34px;object-fit:contain}
 nav ul{display:flex;gap:26px;list-style:none;padding:0;font-weight:500;font-size:15px;color:var(--mute)}
 nav ul a:hover{color:var(--teal)}
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#fff;font-weight:600;padding:14px 24px;border-radius:999px;border:0;cursor:pointer;font:600 16px var(--body);transition:transform .2s,background .2s,box-shadow .2s;box-shadow:0 8px 22px -8px rgba(27,138,107,.7)}
@@ -55,6 +58,8 @@ nav ul a:hover{color:var(--teal)}
 /* phone */
 .stage{display:flex;justify-content:center;position:relative}
 .phone{width:290px;background:var(--paper);border-radius:40px;padding:12px;box-shadow:0 40px 80px -30px rgba(18,107,82,.45),0 0 0 1.5px var(--line);animation:float 6s ease-in-out infinite;position:relative}
+.hero-shot{width:min(330px,100%);padding:9px;background:#fff;border:1px solid rgba(20,35,30,.08);border-radius:32px;box-shadow:0 38px 90px -38px rgba(18,107,82,.48),0 12px 30px rgba(20,35,30,.10);overflow:hidden;animation:float 6s ease-in-out infinite;position:relative;z-index:1}
+.hero-shot img{display:block;width:100%;height:auto;border-radius:24px}
 @keyframes float{50%{transform:translateY(-14px) rotate(.6deg)}}
 .screen{border-radius:30px;background:linear-gradient(#f6fcf9,#fff);padding:16px 14px 14px;min-height:540px;overflow:hidden}
 .sbar{display:flex;align-items:center;gap:8px;font:800 15px var(--display)}
@@ -79,7 +84,7 @@ nav ul a:hover{color:var(--teal)}
 .urgent{margin-top:11px;background:var(--rose);border-radius:14px;padding:10px 12px;display:flex;justify-content:space-between;font-size:11px;font-weight:600;align-items:center}
 .urgent b{color:var(--red);font-size:15px;animation:beat 1.2s infinite}
 @keyframes beat{50%{transform:scale(1.18)}}
-.chip{position:absolute;background:#fff;border-radius:14px;padding:10px 14px;font-size:13px;font-weight:600;box-shadow:0 14px 30px -10px rgba(20,35,30,.28);display:flex;gap:8px;align-items:center}
+.chip{position:absolute;z-index:2;background:#fff;border-radius:14px;padding:10px 14px;font-size:13px;font-weight:600;box-shadow:0 14px 30px -10px rgba(20,35,30,.28);display:flex;gap:8px;align-items:center}
 .chip i{width:9px;height:9px;border-radius:50%;background:var(--teal)}
 .c1{left:-8px;top:90px;animation:float 5s ease-in-out infinite}
 .c2{right:-8px;bottom:110px;animation:float 7s ease-in-out infinite reverse}
@@ -140,6 +145,19 @@ details[open] summary::after{transform:rotate(45deg)}
 details p{padding:0 22px 20px;color:var(--mute)}
 .center{text-align:center}.center .lead{margin:0 auto}
 
+/* real app previews */
+.screens{background:#fff;border-block:1px solid var(--line)}
+.screen-grid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:18px;margin-top:38px;align-items:stretch}
+.screen-card{position:relative;background:#f4f8f6;border:1px solid var(--line);border-radius:26px;padding:12px;overflow:hidden;box-shadow:0 12px 32px rgba(20,35,30,.06)}
+.screen-card img{display:block;width:100%;height:390px;object-fit:cover;object-position:top center;border-radius:18px}
+.screen-card:not(.map-card) img{object-fit:contain;background:#f7faf8}
+.screen-card.map-card img{object-position:center}
+.screen-caption{padding:16px 8px 8px}
+.screen-caption b{font:700 18px var(--display);display:block;margin-bottom:3px}
+.screen-caption span{color:var(--mute);font-size:14px}
+@media(max-width:860px){.screen-grid{grid-template-columns:1fr 1fr}.screen-card.map-card{grid-column:span 2}.screen-card.map-card img{height:300px}}
+@media(max-width:560px){.screen-grid{grid-template-columns:1fr;gap:12px;margin-top:26px}.screen-card.map-card{grid-column:auto}.screen-card img{height:360px}.screen-card.map-card img{height:230px}.hero-shot{width:min(330px,86vw)}}
+
 footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mute);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px}
 footer .warn{max-width:520px}
@@ -170,7 +188,7 @@ img,svg{max-width:100%}
 @media(max-width:560px){
   .wrap{padding:0 16px}
   nav .wrap{height:58px}
-  .logo{font-size:19px}.logo svg{width:30px;height:30px}
+  .logo{font-size:19px}.logo img{width:30px;height:30px}
   h2{font-size:28px}
   .lead{font-size:16px}
   .hero h1{font-size:clamp(38px,12vw,52px)}
@@ -204,11 +222,12 @@ img,svg{max-width:100%}
 
 <nav>
   <div class="wrap">
-    <a href="#top" class="logo"><svg><use href="#heart"/></svg>LifeLink</a>
+    <a href="#top" class="logo"><img src="icons/icon.png" alt="">LifeLink</a>
     <ul>
-      <li><a href="#how">How it works</a></li>
+      <li><a href="#how">How to use it</a></li>
+      <li><a href="#screens">Screenshots</a></li>
       <li><a href="#features">Features</a></li>
-      <li><a href="#why">Why LifeLink</a></li>
+      <li><a href="#why">About</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <a href="#download" class="btn sm">Download</a>
@@ -219,35 +238,18 @@ img,svg{max-width:100%}
   <div class="blob b1"></div><div class="blob b2"></div>
   <div class="wrap">
     <div>
-      <h1><span>Find the</span> <span>right care,</span> <span class="red">fast.</span></h1>
-      <p class="lead">LifeLink brings hospitals, contact details and routes into one simple app, so you search less and reach help sooner.</p>
+      <h1><span>Find a</span> <span>hospital</span> <span class="red">nearby.</span></h1>
+      <p class="lead">Look up hospitals, check their details and see where they are on the map—all in one place.</p>
       <div class="cta">
         <a href="#download" class="btn">Download LifeLink</a>
-        <a href="#how" class="btn ghost">See how it works</a>
+        <a href="#how" class="btn ghost">How to use LifeLink</a>
       </div>
-      <p class="note">Free · Works offline · Location asked only when needed</p>
+      <p class="note">Free to use · Hospital information works offline · Location is optional</p>
     </div>
     <div class="stage">
-      <div class="chip c1"><i></i>Hospital found</div>
-      <div class="phone">
-        <div class="screen">
-          <div class="sbar"><svg viewBox="0 0 48 48"><use href="#heart"/></svg>LifeLink</div>
-          <div class="s-eyebrow">LIFELINK CARE</div>
-          <div class="s-h">Find care near you</div>
-          <div class="pill"><span class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><circle cx="12" cy="9" r="5"/></svg></span>Location selected</div>
-          <div class="map">
-            <svg viewBox="0 0 230 130"><path class="route" d="M26 104 C70 100 70 60 110 66 S170 40 205 27"/></svg>
-            <span class="me"></span><span class="ping"></span>
-          </div>
-          <div class="mini">
-            <div><span class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><rect x="4" y="4" width="16" height="16" rx="3"/></svg></span>Hospitals</div>
-            <div><span class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M3 11l18-8-8 18-2-8z"/></svg></span>Nearby map</div>
-            <div><span class="ico r"><svg viewBox="0 0 24 24" fill="#d63a3f"><rect x="3" y="8" width="18" height="9" rx="2"/></svg></span>Emergency</div>
-          </div>
-          <div class="urgent">Need urgent help?<b>108</b></div>
-        </div>
-      </div>
-      <div class="chip c2"><i style="background:var(--red)"></i>Route ready</div>
+      <div class="chip c1"><i></i>81 hospitals nearby</div>
+      <figure class="hero-shot"><img src="How_it_looks/2.png" alt="LifeLink home screen with hospital search, care categories and emergency call shortcut"></figure>
+      <div class="chip c2"><i style="background:var(--red)"></i>Emergency 108</div>
     </div>
   </div>
 </header>
@@ -259,43 +261,55 @@ img,svg{max-width:100%}
   </div>
 </div>
 
+<section class="screens" id="screens">
+  <div class="wrap">
+    <div class="rv center"><h2>A look inside the app</h2>
+    <p class="lead">Here are a few screens from LifeLink, including the hospital map and location settings.</p></div>
+    <div class="screen-grid">
+      <article class="screen-card rv"><img src="How_it_looks/3.png" alt="LifeLink welcome screen with offline hospital directory features"><div class="screen-caption"><b>Welcome to LifeLink</b><span>Hospital information is available offline.</span></div></article>
+      <article class="screen-card map-card rv"><img src="How_it_looks/17.png" alt="LifeLink map showing nearby hospitals around Lucknow"><div class="screen-caption"><b>Hospitals on the map</b><span>Browse hospitals around Lucknow and see where they are.</span></div></article>
+      <article class="screen-card rv"><img src="How_it_looks/4.png" alt="LifeLink location permission screen explaining how location is used"><div class="screen-caption"><b>Choose how to share location</b><span>Allow nearby search or choose a location yourself.</span></div></article>
+    </div>
+  </div>
+</section>
+
 <section id="how">
   <div class="wrap">
-    <div class="rv"><h2>Four steps from worry to route</h2>
-    <p class="lead">When every second counts, LifeLink keeps the path short: open the app, search, check the details, and navigate.</p></div>
+    <div class="rv"><h2>How to use LifeLink</h2>
+    <p class="lead">Open the app, look for a hospital and check its details. You can also view it on the map.</p></div>
     <div class="flow" id="flow">
-      <div class="step rv"><b>Find</b><p>Search for a nearby hospital or emergency resource.</p></div>
-      <div class="step rv"><b>Check</b><p>See name, contact, facilities and distance in one place.</p></div>
-      <div class="step rv"><b>Route</b><p>Pick a hospital on the map and see the way there.</p></div>
-      <div class="step rv"><b>Respond</b><p>Call ahead or head out knowing where you're going.</p></div>
+      <div class="step rv"><b>Search</b><p>Look for hospitals by name or area.</p></div>
+      <div class="step rv"><b>Compare</b><p>Review contact details, facilities and distance.</p></div>
+      <div class="step rv"><b>View</b><p>Find the hospital on the map and check the route.</p></div>
+      <div class="step rv"><b>Get in touch</b><p>Use the listed contact details to call ahead.</p></div>
     </div>
   </div>
 </section>
 
 <section id="features" style="padding-top:20px">
   <div class="wrap">
-    <div class="rv"><h2>Everything you need in an emergency</h2>
-    <p class="lead">Built around the questions people actually ask: where, how far, who to call, and can they help.</p></div>
+    <div class="rv"><h2>What you can do with LifeLink</h2>
+    <p class="lead">Search for hospitals, check the information available and use the map to find them.</p></div>
     <div class="grid">
-      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M12 2l8 3v6c0 5-3.500 9-8 11-4.500-2-8-6-8-11V5z"/></svg></div><h3>Smart Hospital Finder</h3><p>Match nearby hospitals to what the patient needs, not just whatever is closest.</p></div>
-      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><rect x="4" y="3" width="16" height="18" rx="3"/></svg></div><h3>Hospital details</h3><p>Name, location, contact and available facilities.</p></div>
-      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M3 11l18-8-8 18-2-8z"/></svg></div><h3>Interactive map</h3><p>Tap a hospital to see distance and route.</p></div>
-      <div class="feat rv"><div class="ico r"><svg viewBox="0 0 24 24" fill="#d63a3f"><path d="M12 2s6 7 6 12a6 6 0 01-12 0c0-5 6-12 6-12z"/></svg></div><h3>Blood information</h3><p>Know when blood is needed and what to ask for.</p></div>
-      <div class="feat rv"><div class="ico r"><svg viewBox="0 0 24 24" fill="#d63a3f"><path d="M6 2h9l5 5v15H6z"/></svg></div><h3>Emergency 108, one tap</h3><p>Call the emergency helpline instantly from the home screen, and keep key documents handy.</p></div>
-      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M2 14h5l3-8 4 14 3-6h5v2h-3.700l-4.300 8-4-13-1.500 5H2z"/></svg></div><h3>Works offline</h3><p>Stored hospital information stays useful with no internet.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M12 2l8 3v6c0 5-3.500 9-8 11-4.500-2-8-6-8-11V5z"/></svg></div><h3>Find a hospital</h3><p>Search the directory and see nearby options.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><rect x="4" y="3" width="16" height="18" rx="3"/></svg></div><h3>Check the details</h3><p>View a hospital's contact information and listed facilities.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M3 11l18-8-8 18-2-8z"/></svg></div><h3>Open the map</h3><p>See hospital locations and available routes.</p></div>
+      <div class="feat rv"><div class="ico r"><svg viewBox="0 0 24 24" fill="#d63a3f"><path d="M12 2s6 7 6 12a6 6 0 01-12 0c0-5 6-12 6-12z"/></svg></div><h3>Blood information</h3><p>Find blood related information in the app.</p></div>
+      <div class="feat rv"><div class="ico r"><svg viewBox="0 0 24 24" fill="#d63a3f"><path d="M6 2h9l5 5v15H6z"/></svg></div><h3>Emergency number</h3><p>Use the home screen shortcut to call 108. Documents are also easy to find.</p></div>
+      <div class="feat rv"><div class="ico"><svg viewBox="0 0 24 24" fill="#1b8a6b"><path d="M2 14h5l3-8 4 14 3-6h5v2h-3.700l-4.300 8-4-13-1.500 5H2z"/></svg></div><h3>Use it offline</h3><p>The saved hospital directory is available without an internet connection.</p></div>
     </div>
   </div>
 </section>
 
 <section id="why" style="padding-top:20px">
   <div class="wrap">
-    <div class="rv"><h2>Fast. Local. Offline. Private.</h2>
-    <p class="lead">Less searching, fewer steps, clearer decisions. Your location is requested only when you need it.</p></div>
+    <div class="rv"><h2>Made for quick lookups</h2>
+    <p class="lead">LifeLink keeps the hospital directory close by. You decide when to use your location.</p></div>
     <div class="pillars rv">
-      <div><strong>Fast</strong>fewer steps</div>
-      <div><strong>Local</strong>location-aware</div>
-      <div><strong>Offline</strong>stored info, no signal needed</div>
-      <div><strong>Private</strong>location only on request</div>
+      <div><strong>Search</strong>hospitals nearby</div>
+      <div><strong>Details</strong>contacts and facilities</div>
+      <div><strong>Offline</strong>directory saved on device</div>
+      <div><strong>Location</strong>used when you choose</div>
     </div>
   </div>
 </section>
@@ -303,38 +317,38 @@ img,svg{max-width:100%}
 <section id="download">
   <div class="wrap">
     <div class="dl rv">
-      <h2>Get LifeLink before you need it</h2>
-      <p>Install it now so the right information is already on your phone when it matters most.</p>
+      <h2>Try LifeLink</h2>
+      <p>Download the Android app or open the web version to look through the hospital directory.</p>
       <div class="row">
-        <a class="btn" href="base.apk" download="LifeLink.apk">Download for Android (APK)</a>
-        <a class="btn" href="https://rkstudios-hub.github.io/LifeLink/" target="_blank" rel="noopener">Open web app</a>
+        <a class="btn" href="base.apk" download="LifeLink.apk">Download the Android app</a>
+        <a class="btn" href="https://rkstudios-hub.github.io/LifeLink/" target="_blank" rel="noopener">Open LifeLink online</a>
       </div>
-      <small>Add to home screen from your browser to install it like an app (PWA).</small>
+      <small>You can add the web version to your home screen from your browser.</small>
     </div>
   </div>
 </section>
 
 <section id="faq">
   <div class="wrap center">
-    <div class="rv"><h2>Questions, answered</h2><p class="lead">Short answers about how LifeLink works.</p></div>
+    <div class="rv"><h2>Common questions</h2><p class="lead">A few things to know about the current version.</p></div>
     <div class="faq" style="text-align:left">
-      <details><summary>What is LifeLink?</summary><p>LifeLink is a Community Emergency Service System. It helps you find nearby hospitals, check important details, see a route, and take the next step, all in one mobile-friendly app.</p></details>
-      <details><summary>Does LifeLink work without internet?</summary><p>The current prototype works offline so its main features can be used without a connection. The full version will go online for real-time updates, live maps, location tracking and road routing.</p></details>
-      <details><summary>Is it free to download?</summary><p>Yes. LifeLink is free to download and use.</p></details>
-      <details><summary>How do I install it?</summary><p>Tap Download above. On Android, install the APK. On any phone, you can also open the web app and choose "Add to Home Screen" to install it as a PWA.</p></details>
-      <details><summary>Does it track my location?</summary><p>No constant tracking. LifeLink asks for your location only when you need it, for example to find nearby hospitals and show a route.</p></details>
-      <details><summary>Can I rely on it for medical decisions?</summary><p>No. LifeLink does not replace doctors, hospitals, ambulances or professional medical judgement. The prototype may use sample or available data, so always confirm details with the hospital. In a life-threatening emergency, call 108.</p></details>
-      <details><summary>What technology does it use?</summary><p>HTML, CSS and JavaScript, with Leaflet and OpenStreetMap for maps, OSRM for routes and distance, and PWA with a Service Worker for offline use.</p></details>
-      <details><summary>What's coming next?</summary><p>Real-time ambulance availability, verified blood donors by group and area, hospital ICU updates, verified volunteers, local emergency alerts, voice search, and Hindi and other regional languages.</p></details>
+      <details><summary>What is LifeLink?</summary><p>LifeLink is a hospital directory that helps you search for hospitals, check their details and find them on a map.</p></details>
+      <details><summary>Can I use it without internet?</summary><p>The saved hospital directory can be used offline. Map and route features may need an internet connection.</p></details>
+      <details><summary>Is LifeLink free?</summary><p>Yes, the app is free to download and use.</p></details>
+      <details><summary>How do I install it?</summary><p>On Android, download and install the APK. You can also open the web version and use your browser's "Add to Home Screen" option.</p></details>
+      <details><summary>Does LifeLink use my location?</summary><p>Nearby search can use your location if you allow it. You can also choose a location manually.</p></details>
+      <details><summary>Can I use it to make medical decisions?</summary><p>No. LifeLink is a directory and does not replace medical advice or emergency services. Hospital information may not always be current, so confirm details with the hospital. For emergencies in India, call 108.</p></details>
+      <details><summary>What is the app built with?</summary><p>LifeLink uses HTML, CSS and JavaScript. The map uses Leaflet and OpenStreetMap, and routes use OSRM.</p></details>
+      <details><summary>What might be added later?</summary><p>Possible additions include verified blood donor information, hospital updates, emergency alerts, voice search and more language options.</p></details>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div><a href="#top" class="logo"><svg><use href="#heart"/></svg>LifeLink</a><p style="margin-top:8px">Connect. Locate. Respond.</p></div>
-    <p class="warn">LifeLink is a prototype and not a substitute for professional medical care. Verify information with the concerned hospital. For emergencies, call 108.</p>
-    <p>Built by Aditya &amp; Anand</p>
+    <div><a href="#top" class="logo"><img src="icons/icon.png" alt="">LifeLink</a><p style="margin-top:8px">Hospital information, close at hand.</p></div>
+    <p class="warn">LifeLink is a project prototype, not a medical service. Hospital information may change; please confirm it with the hospital. For emergencies in India, call 108.</p>
+    <p>Built by Aditya, Anand &amp; Rupesh<br>An LPS Eldeco team project</p>
   </div>
 </footer>
 
