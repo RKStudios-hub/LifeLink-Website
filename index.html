@@ -134,6 +134,22 @@ nav ul a:hover{color:var(--teal)}
 .dl .btn:hover{background:var(--rose)}
 .dl small{display:block;margin-top:22px;opacity:.85}
 
+/* APK download guide */
+.apk-dialog{width:min(560px,calc(100% - 28px));max-height:min(90vh,760px);overflow:auto;border:0;border-radius:28px;padding:30px;background:#fff;color:var(--ink);box-shadow:0 28px 90px rgba(10,38,29,.32)}
+.apk-dialog::backdrop{background:rgba(13,31,26,.58);backdrop-filter:blur(5px)}
+.apk-dialog h2{font-size:clamp(26px,5vw,34px);margin:0 0 8px}
+.apk-dialog-intro{color:var(--mute);margin-bottom:20px}
+.install-steps{display:grid;gap:12px;margin:22px 0 24px}
+.install-step{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center;padding:15px;background:#f4faf7;border:1px solid var(--line);border-radius:18px}
+.install-art{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--mint);color:var(--teal-d)}
+.install-art svg{width:30px;height:30px}
+.install-step h3{font:700 17px var(--display);margin-bottom:3px}
+.install-step p{font-size:14px;line-height:1.5;color:var(--mute)}
+.apk-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.apk-actions .btn{min-height:48px}
+.apk-actions .btn.cancel{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+@media(max-width:560px){.apk-dialog{padding:23px 18px;border-radius:24px}.apk-actions{flex-direction:column-reverse}.apk-actions .btn{width:100%;justify-content:center}}
+
 /* faq */
 .faq{max-width:760px;margin:36px auto 0}
 details{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;margin-bottom:10px;transition:border-color .2s}
@@ -320,7 +336,7 @@ img,svg{max-width:100%}
       <h2>Try LifeLink</h2>
       <p>Download the Android app or open the web version to look through the hospital directory.</p>
       <div class="row">
-        <a class="btn" href="base.apk" download="LifeLink.apk">Download the Android app</a>
+        <a class="btn" href="base.apk" download="LifeLink.apk" id="apk-download">Download the Android app</a>
         <a class="btn" href="https://rkstudios-hub.github.io/LifeLink/" target="_blank" rel="noopener">Open LifeLink online</a>
       </div>
       <small>You can add the web version to your home screen from your browser.</small>
@@ -352,6 +368,25 @@ img,svg{max-width:100%}
   </div>
 </footer>
 
+<dialog class="apk-dialog" id="apk-dialog" aria-labelledby="apk-dialog-title" aria-describedby="apk-dialog-intro">
+  <h2 id="apk-dialog-title">A quick note before you install</h2>
+  <p class="apk-dialog-intro" id="apk-dialog-intro">Android apps downloaded from a website can show a security prompt. Here’s what to do:</p>
+  <div class="install-steps">
+    <article class="install-step">
+      <div class="install-art" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 26 7v7.3c0 6.4-4.2 11.4-10 14.2C10.2 25.7 6 20.7 6 14.3V7l10-3.5Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 10v9m0 0-3.5-3.5M16 19l3.5-3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><h3>1. Check the browser prompt</h3><p>Your browser may flag an APK from a website. If you want to continue, choose “Keep” or “Download anyway.” The wording can vary.</p></div>
+    </article>
+    <article class="install-step">
+      <div class="install-art" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="7" y="3.5" width="18" height="25" rx="3.5" stroke="currentColor" stroke-width="2.2"/><path d="M12 11h8m-8 5h8m-8 5h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="m18.5 22 2 2 4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><h3>2. Open the downloaded APK</h3><p>When it finishes, tap <strong>LifeLink.apk</strong>. If Android asks, choose <strong>Package Installer</strong>, then tap <strong>Install</strong>.</p></div>
+    </article>
+  </div>
+  <div class="apk-actions">
+    <button class="btn cancel" type="button" id="apk-cancel">Not now</button>
+    <button class="btn" type="button" id="apk-understand">OK, I understand</button>
+  </div>
+</dialog>
+
 <script>
 // scroll reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
@@ -359,6 +394,20 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 // cycle the four steps
 const steps=[...document.querySelectorAll('.step')];let i=0;
 setInterval(()=>{steps.forEach((s,k)=>s.classList.toggle('on',k===i));i=(i+1)%steps.length},1800);
+// Explain APK installation before starting the download.
+const apkLink=document.querySelector('#apk-download');
+const apkDialog=document.querySelector('#apk-dialog');
+apkLink.addEventListener('click',e=>{e.preventDefault();apkDialog.showModal()});
+document.querySelector('#apk-cancel').addEventListener('click',()=>apkDialog.close());
+document.querySelector('#apk-understand').addEventListener('click',()=>{
+  apkDialog.close();
+  const download=document.createElement('a');
+  download.href=apkLink.href;
+  download.download=apkLink.download;
+  document.body.append(download);
+  download.click();
+  download.remove();
+});
 </script>
 </body>
 </html>
