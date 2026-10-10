@@ -14,8 +14,8 @@
 :root{--bg:#f3faf7;--paper:#fff;--ink:#14231e;--mute:#5d716a;--teal:#1b8a6b;--teal-d:#126b52;--mint:#dff3ea;--red:#d63a3f;--rose:#fdeceb;--line:#dbe9e3;
 --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'Figtree','Segoe UI',system-ui,sans-serif}
 @media (prefers-color-scheme:dark){:root:not([data-force]){}}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0;min-width:0}
+html{width:100%;scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip}
 body{width:100%;max-width:100%;font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;overflow-x:clip}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:8px}
@@ -141,6 +141,18 @@ nav ul a:hover{color:var(--teal)}
 .apk-dialog::backdrop{background:rgba(13,31,26,.58);backdrop-filter:blur(5px)}
 .apk-dialog h2{font-size:clamp(26px,5vw,34px);margin:0 0 8px}
 .apk-dialog-intro{color:var(--mute);margin-bottom:4px}
+.apk-visual{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr);gap:9px;align-items:center;margin:16px 0 0;padding:10px;background:#f4faf7;border:1px solid var(--line);border-radius:18px}
+.mock-panel{min-width:0;padding:10px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:0 4px 12px rgba(20,35,30,.05)}
+.mock-label{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.mock-alert{display:flex;align-items:center;gap:7px;min-height:34px}
+.mock-alert-icon{width:24px;height:24px;flex:none;border-radius:50%;display:grid;place-items:center;background:#fff1d7;color:#a86700;font-weight:800}
+.mock-alert b,.mock-app b{display:block;font-size:11px;line-height:1.2}
+.mock-alert small,.mock-app small{display:block;font-size:9px;color:var(--mute);line-height:1.2;margin-top:2px}
+.mock-choice{margin-top:8px;padding:5px 6px;border-radius:7px;background:#fff5df;color:#855200;font-size:9px;font-weight:700;text-align:center}
+.mock-arrow{color:var(--teal);font-size:22px;font-weight:700;text-align:center}
+.mock-app{display:flex;align-items:center;gap:7px;min-height:34px}
+.mock-app img{width:27px;height:27px;object-fit:contain;flex:none}
+.mock-install{margin-top:8px;padding:5px 6px;border-radius:7px;background:var(--teal);color:#fff;font-size:9px;font-weight:700;text-align:center}
 .install-steps{display:grid;gap:12px;margin:18px 0 0;min-height:0;overflow-y:auto;overscroll-behavior:contain}
 .install-step{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center;padding:15px;background:#f4faf7;border:1px solid var(--line);border-radius:18px}
 .install-art{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--mint);color:var(--teal-d)}
@@ -151,7 +163,7 @@ nav ul a:hover{color:var(--teal)}
 .apk-actions .btn{min-height:48px}
 .apk-actions .btn.cancel{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
 @media(max-width:560px){.apk-dialog{padding:23px 18px;border-radius:24px}.apk-actions{flex-direction:column-reverse}.apk-actions .btn{width:100%;justify-content:center}}
-@media(max-width:380px){.apk-dialog{width:calc(100vw - 20px);padding:19px 15px}.install-step{grid-template-columns:42px minmax(0,1fr);gap:10px;padding:11px}.install-art{width:42px;height:42px;border-radius:13px}.install-step h3{font-size:15px}.install-step p{font-size:13px}}
+@media(max-width:380px){.apk-dialog{width:calc(100vw - 20px);padding:19px 15px}.apk-visual{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);gap:5px;padding:7px}.mock-panel{padding:8px 6px}.install-step{grid-template-columns:42px minmax(0,1fr);gap:10px;padding:11px}.install-art{width:42px;height:42px;border-radius:13px}.install-step h3{font-size:15px}.install-step p{font-size:13px}}
 
 /* faq */
 .faq{max-width:760px;margin:36px auto 0}
@@ -374,6 +386,19 @@ img,svg{max-width:100%}
 <dialog class="apk-dialog" id="apk-dialog" aria-labelledby="apk-dialog-title" aria-describedby="apk-dialog-intro">
   <h2 id="apk-dialog-title">A quick note before you install</h2>
   <p class="apk-dialog-intro" id="apk-dialog-intro">Android apps downloaded from a website can show a security prompt. Here’s what to do:</p>
+  <div class="apk-visual" aria-hidden="true">
+    <div class="mock-panel">
+      <div class="mock-label">Browser download</div>
+      <div class="mock-alert"><span class="mock-alert-icon">!</span><span><b>APK file</b><small>LifeLink.apk</small></span></div>
+      <div class="mock-choice">Keep / Download anyway</div>
+    </div>
+    <div class="mock-arrow">›</div>
+    <div class="mock-panel">
+      <div class="mock-label">Package Installer</div>
+      <div class="mock-app"><img src="icons/icon-192.png" alt=""><span><b>LifeLink</b><small>Ready to install</small></span></div>
+      <div class="mock-install">Install</div>
+    </div>
+  </div>
   <div class="install-steps">
     <article class="install-step">
       <div class="install-art" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 26 7v7.3c0 6.4-4.2 11.4-10 14.2C10.2 25.7 6 20.7 6 14.3V7l10-3.5Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M16 10v9m0 0-3.5-3.5M16 19l3.5-3.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
